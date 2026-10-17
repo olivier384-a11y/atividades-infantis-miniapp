@@ -8,7 +8,7 @@
 
   <title>Atividades Infantis | Cone Publicações</title>
 
-  <!-- SDK Monetag -->
+  <!-- Monetag SDK -->
   <script
     src="https://libtl.com/sdk.js"
     data-zone="12056591"
@@ -142,13 +142,9 @@
         <button class="letter" data-letter="U">U</button>
       </div>
 
-      <p id="feedback" aria-live="polite">
-        Vamos começar! 💛
-      </p>
+      <p id="feedback" aria-live="polite">Vamos começar! 💛</p>
 
-      <button class="action" id="next">
-        Nova pergunta
-      </button>
+      <button class="action" id="next">Nova pergunta</button>
 
       <p class="small">
         Acertos: <strong id="score">0</strong>
@@ -156,11 +152,11 @@
     </section>
 
     <section class="card">
-      <h2>📚 Mais atividades</h2>
+      <h2>📚 Etiquetas e atividades</h2>
       <p class="small">
-        Visite nosso site para encontrar etiquetas escolares,
-        atividades de alfabetização, matemática, jogos e outros
-        materiais educativos para baixar.
+        Visite nosso site para encontrar etiquetas escolares
+        para baixar, atividades de alfabetização, matemática,
+        jogos e outros materiais educativos gratuitos.
       </p>
 
       <button class="action" id="site">
@@ -171,8 +167,8 @@
     <section class="card">
       <h2>💜 Apoie nosso projeto</h2>
       <p class="small">
-        Se desejar, você pode abrir um anúncio para apoiar
-        a continuidade do projeto. Esta opção é voluntária.
+        Se desejar, você pode tentar abrir um anúncio para
+        apoiar o projeto. Esta opção é voluntária.
       </p>
 
       <button class="action secondary" id="adButton">
@@ -188,6 +184,7 @@
   </footer>
 
   <script>
+    // Jogo das vogais
     const vowels = ["A", "E", "I", "O", "U"];
     let answer = "";
     let score = 0;
@@ -238,47 +235,50 @@
       newQuestion
     );
 
-    // Abre o site para acessar e baixar os materiais
-    document.getElementById("site").addEventListener("click", () => {
+    // Botão para abrir o site
+    document.getElementById("site").addEventListener("click", function () {
       const url = "https://atividadesinfantis9.blogspot.com/";
 
-      if (window.Telegram &&
-          window.Telegram.WebApp &&
-          typeof window.Telegram.WebApp.openLink === "function") {
+      if (
+        window.Telegram &&
+        window.Telegram.WebApp &&
+        typeof window.Telegram.WebApp.openLink === "function"
+      ) {
         window.Telegram.WebApp.openLink(url);
       } else {
-        window.open(url, "_blank", "noopener,noreferrer");
+        window.location.href = url;
       }
     });
 
-    // O anúncio só é solicitado após o usuário tocar no botão
-    document.getElementById("adButton").addEventListener("click", async () => {
-      const status = document.getElementById("adStatus");
-      const button = document.getElementById("adButton");
+    // Anúncio opcional
+    document.getElementById("adButton").addEventListener(
+      "click",
+      async function () {
+        const status = document.getElementById("adStatus");
+        const button = document.getElementById("adButton");
 
-      if (typeof window.show_12056591 !== "function") {
-        status.textContent =
-          "O anúncio não está disponível no momento. Tente novamente mais tarde.";
-        return;
+        if (typeof window.show_12056591 !== "function") {
+          status.textContent =
+            "Anúncio indisponível no momento. Você pode continuar usando o aplicativo.";
+          return;
+        }
+
+        button.disabled = true;
+        status.textContent = "Tentando carregar o anúncio...";
+
+        try {
+          await window.show_12056591("pop");
+          status.textContent = "Obrigado por apoiar nosso projeto!";
+        } catch (error) {
+          status.textContent =
+            "Não foi possível abrir o anúncio. Tente novamente mais tarde.";
+        } finally {
+          button.disabled = false;
+        }
       }
-
-      button.disabled = true;
-      status.textContent = "Carregando anúncio...";
-
-      try {
-        await window.show_12056591("pop");
-        status.textContent = "Obrigado por apoiar nosso projeto!";
-      } catch (error) {
-        status.textContent =
-          "Não foi possível abrir o anúncio. Você pode continuar usando o aplicativo normalmente.";
-      } finally {
-        button.disabled = false;
-      }
-    });
+    );
 
     newQuestion();
   </script>
 </body>
 </html>
-
-
