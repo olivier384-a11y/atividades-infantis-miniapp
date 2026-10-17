@@ -5,15 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#5b55d9">
-
   <title>Atividades Infantis | Cone Publicações</title>
-
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -47,16 +43,8 @@
       font-size: 27px;
     }
 
-    .brand h1 {
-      font-size: 21px;
-      margin: 0 0 5px;
-    }
-
-    .brand p {
-      font-size: 13px;
-      margin: 0;
-      color: #eeeeff;
-    }
+    .brand h1 { font-size: 21px; margin: 0 0 5px; }
+    .brand p { font-size: 13px; margin: 0; color: #eeeeff; }
 
     header h2 {
       font-size: 25px;
@@ -76,10 +64,7 @@
       margin: 23px auto;
     }
 
-    .section-title {
-      font-size: 20px;
-      margin: 0 0 14px;
-    }
+    .section-title { font-size: 20px; margin: 0 0 14px; }
 
     .section-description {
       color: #696984;
@@ -88,7 +73,7 @@
       margin: -5px 0 17px;
     }
 
-    .featured {
+    .featured, .site-card {
       background: white;
       border-radius: 18px;
       padding: 19px;
@@ -96,18 +81,11 @@
       box-shadow: 0 4px 15px #25264b0b;
     }
 
-    .featured-icon {
-      font-size: 35px;
-      margin-bottom: 8px;
-    }
+    .featured-icon { font-size: 35px; margin-bottom: 8px; }
+    .featured h3, .site-card h3 { margin: 0 0 8px; font-size: 19px; }
 
-    .featured h3 {
-      margin: 0 0 8px;
-      font-size: 19px;
-    }
-
-    .featured p {
-      margin: 0;
+    .featured p, .site-card p {
+      margin: 0 0 16px;
       font-size: 14px;
       line-height: 1.5;
       color: #696984;
@@ -128,11 +106,11 @@
       color: #29294a;
       min-height: 145px;
       box-shadow: 0 3px 12px #25264b08;
+      font-family: inherit;
+      cursor: pointer;
     }
 
-    .category:active {
-      transform: scale(0.98);
-    }
+    .category:active { transform: scale(0.98); }
 
     .category-icon {
       font-size: 30px;
@@ -153,26 +131,7 @@
       display: block;
     }
 
-    .site-card {
-      background: white;
-      border-radius: 18px;
-      padding: 20px;
-      margin-top: 24px;
-      text-align: center;
-      box-shadow: 0 4px 15px #25264b0b;
-    }
-
-    .site-card h3 {
-      margin: 0 0 9px;
-      font-size: 19px;
-    }
-
-    .site-card p {
-      font-size: 14px;
-      line-height: 1.5;
-      color: #696984;
-      margin: 0 0 16px;
-    }
+    .site-card { text-align: center; margin-top: 24px; }
 
     .main-button {
       width: 100%;
@@ -184,9 +143,6 @@
       font-size: 15px;
       border: 0;
       cursor: pointer;
-    }
-
-    .category, .main-button {
       font-family: inherit;
     }
 
@@ -199,13 +155,8 @@
     }
 
     @media (max-width: 350px) {
-      .categories {
-        grid-template-columns: 1fr;
-      }
-
-      header h2 {
-        font-size: 22px;
-      }
+      .categories { grid-template-columns: 1fr; }
+      header h2 { font-size: 22px; }
     }
   </style>
 </head>
@@ -232,19 +183,18 @@
       <div class="featured-icon">🏷️</div>
       <h3>Etiquetas escolares</h3>
       <p>
-        Encontre etiquetas para identificar cadernos, livros
-        e outros materiais escolares.
+        Acesse o site para consultar os materiais disponíveis
+        e encontrar novas publicações.
       </p>
-      <button class="main-button" data-destination="labels">
-        Ver etiquetas escolares →
+      <button class="main-button" data-destination="home">
+        Visitar nosso site →
       </button>
     </section>
 
     <section>
       <h2 class="section-title">Explore os materiais</h2>
       <p class="section-description">
-        Escolha uma categoria para encontrar publicações
-        relacionadas no nosso site.
+        Escolha uma categoria para consultar as publicações.
       </p>
 
       <div class="categories">
@@ -254,22 +204,22 @@
           <span>Letras, vogais, sílabas e leitura.</span>
         </button>
 
-        <button class="category" data-destination="math">
-          <span class="category-icon">🔢</span>
-          <strong>Matemática</strong>
-          <span>Números, contagem e formas.</span>
+        <button class="category" data-destination="diary">
+          <span class="category-icon">🍎</span>
+          <strong>Diário Alimentar</strong>
+          <span>Materiais para registro e acompanhamento alimentar.</span>
         </button>
 
-        <button class="category" data-destination="games">
+        <button class="category" data-destination="varied">
           <span class="category-icon">🧩</span>
-          <strong>Jogos pedagógicos</strong>
-          <span>Jogos e desafios educativos.</span>
+          <strong>Atividades Variadas</strong>
+          <span>Outros recursos e atividades para imprimir.</span>
         </button>
 
-        <button class="category" data-destination="materials">
-          <span class="category-icon">📄</span>
-          <strong>Outros materiais</strong>
-          <span>Atividades e recursos para imprimir.</span>
+        <button class="category" data-destination="home">
+          <span class="category-icon">📚</span>
+          <strong>Todos os materiais</strong>
+          <span>Visite a página inicial do nosso site.</span>
         </button>
       </div>
     </section>
@@ -277,8 +227,8 @@
     <section class="site-card">
       <h3>📥 Acesse nossos materiais</h3>
       <p>
-        Visite o Atividades Infantis para consultar as
-        publicações e baixar os arquivos disponíveis.
+        Consulte as publicações e acesse os arquivos
+        disponibilizados para baixar.
       </p>
       <button class="main-button" data-destination="home">
         Acessar o site completo
@@ -292,41 +242,29 @@
   </footer>
 
   <script>
-    const site = "https://atividadesinfantis9.blogspot.com/";
-
     const destinations = {
-      home: site,
-      labels: site + "search?q=" + encodeURIComponent("etiquetas escolares"),
-      literacy: site + "search?q=" + encodeURIComponent("alfabetização"),
-      math: site + "search?q=" + encodeURIComponent("matemática"),
-      games: site + "search?q=" + encodeURIComponent("jogos"),
-      materials: site + "search?q=" + encodeURIComponent("atividades")
+      home: "https://atividadesinfantis9.blogspot.com/",
+      literacy: "https://atividadesinfantis9.blogspot.com/search/label/Alfabetiza%C3%A7%C3%A3o",
+      diary: "https://atividadesinfantis9.blogspot.com/search/label/Di%C3%A1rio%20alimentar",
+      varied: "https://atividadesinfantis9.blogspot.com/search/label/Atividades%20variadas"
     };
 
     function openDestination(url) {
-      try {
-        if (
-          window.Telegram &&
-          window.Telegram.WebApp &&
-          typeof window.Telegram.WebApp.openLink === "function"
-        ) {
-          window.Telegram.WebApp.openLink(url);
-        } else {
-          window.location.href = url;
-        }
-      } catch (error) {
+      if (
+        window.Telegram &&
+        window.Telegram.WebApp &&
+        typeof window.Telegram.WebApp.openLink === "function"
+      ) {
+        window.Telegram.WebApp.openLink(url);
+      } else {
         window.location.href = url;
       }
     }
 
     document.querySelectorAll("[data-destination]").forEach(button => {
       button.addEventListener("click", () => {
-        const destination = button.dataset.destination;
-        const url = destinations[destination];
-
-        if (url) {
-          openDestination(url);
-        }
+        const url = destinations[button.dataset.destination];
+        if (url) openDestination(url);
       });
     });
 
