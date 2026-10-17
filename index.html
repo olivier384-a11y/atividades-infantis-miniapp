@@ -5,10 +5,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#5b55d9">
-  
-<script src="//libtl.com/sdk.js" data-zone="12056591" data-sdk="show_12056591"></script>
 
-<title>Atividades Infantis | Cone Publicações</title>
+  <title>Atividades Infantis | Cone Publicações</title>
+
+  <!-- SDK Monetag -->
+  <script
+    src="https://libtl.com/sdk.js"
+    data-zone="12056591"
+    data-sdk="show_12056591">
+  </script>
+
   <style>
     * { box-sizing: border-box; }
 
@@ -27,8 +33,15 @@
       border-radius: 0 0 24px 24px;
     }
 
-    header h1 { margin: 0 0 8px; font-size: 27px; }
-    header p { margin: 0; font-size: 14px; }
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 27px;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 14px;
+    }
 
     main {
       width: min(100% - 28px, 600px);
@@ -43,7 +56,10 @@
       box-shadow: 0 4px 14px #25264b10;
     }
 
-    h2 { margin-top: 0; font-size: 21px; }
+    h2 {
+      margin-top: 0;
+      font-size: 21px;
+    }
 
     .choices {
       display: grid;
@@ -67,7 +83,9 @@
       font-weight: bold;
     }
 
-    .letter:disabled { cursor: default; }
+    .letter:disabled {
+      cursor: default;
+    }
 
     .action {
       display: block;
@@ -78,13 +96,22 @@
       margin-top: 12px;
     }
 
+    .secondary {
+      background: #ecebff;
+      color: #4941bb;
+    }
+
     #feedback {
       min-height: 24px;
       font-weight: bold;
       text-align: center;
     }
 
-    .small { color: #646581; font-size: 14px; line-height: 1.5; }
+    .small {
+      color: #646581;
+      font-size: 14px;
+      line-height: 1.5;
+    }
 
     footer {
       text-align: center;
@@ -94,6 +121,7 @@
     }
   </style>
 </head>
+
 <body>
   <header>
     <h1>🎨 Atividades Infantis</h1>
@@ -114,18 +142,44 @@
         <button class="letter" data-letter="U">U</button>
       </div>
 
-      <p id="feedback" aria-live="polite">Vamos começar! 💛</p>
-      <button class="action" id="next">Nova pergunta</button>
-      <p class="small">Acertos: <strong id="score">0</strong></p>
+      <p id="feedback" aria-live="polite">
+        Vamos começar! 💛
+      </p>
+
+      <button class="action" id="next">
+        Nova pergunta
+      </button>
+
+      <p class="small">
+        Acertos: <strong id="score">0</strong>
+      </p>
     </section>
 
     <section class="card">
       <h2>📚 Mais atividades</h2>
       <p class="small">
-        Em breve: alfabetização, matemática, jogos e materiais
-        educativos da Cone Publicações.
+        Visite nosso site para encontrar etiquetas escolares,
+        atividades de alfabetização, matemática, jogos e outros
+        materiais educativos para baixar.
       </p>
-      <button class="action" id="site">Conhecer nosso site</button>
+
+      <button class="action" id="site">
+        📥 Conhecer nosso site
+      </button>
+    </section>
+
+    <section class="card">
+      <h2>💜 Apoie nosso projeto</h2>
+      <p class="small">
+        Se desejar, você pode abrir um anúncio para apoiar
+        a continuidade do projeto. Esta opção é voluntária.
+      </p>
+
+      <button class="action secondary" id="adButton">
+        Ver anúncio opcional
+      </button>
+
+      <p class="small" id="adStatus" aria-live="polite"></p>
     </section>
   </main>
 
@@ -167,7 +221,8 @@
             "Muito bem! Você acertou! 🎉";
         } else {
           document.getElementById("feedback").textContent =
-            "A vogal correta era " + answer + ". Vamos tentar outra!";
+            "A vogal correta era " + answer +
+            ". Vamos tentar outra!";
         }
 
         document.querySelectorAll(".letter").forEach(item => {
@@ -178,14 +233,52 @@
       });
     });
 
-    document.getElementById("next").addEventListener("click", newQuestion);
+    document.getElementById("next").addEventListener(
+      "click",
+      newQuestion
+    );
 
+    // Abre o site para acessar e baixar os materiais
     document.getElementById("site").addEventListener("click", () => {
-      alert("O link do site Atividades Infantis será configurado em breve.");
+      const url = "https://atividadesinfantis9.blogspot.com/";
+
+      if (window.Telegram &&
+          window.Telegram.WebApp &&
+          typeof window.Telegram.WebApp.openLink === "function") {
+        window.Telegram.WebApp.openLink(url);
+      } else {
+        window.open(url, "_blank", "noopener,noreferrer");
+      }
+    });
+
+    // O anúncio só é solicitado após o usuário tocar no botão
+    document.getElementById("adButton").addEventListener("click", async () => {
+      const status = document.getElementById("adStatus");
+      const button = document.getElementById("adButton");
+
+      if (typeof window.show_12056591 !== "function") {
+        status.textContent =
+          "O anúncio não está disponível no momento. Tente novamente mais tarde.";
+        return;
+      }
+
+      button.disabled = true;
+      status.textContent = "Carregando anúncio...";
+
+      try {
+        await window.show_12056591("pop");
+        status.textContent = "Obrigado por apoiar nosso projeto!";
+      } catch (error) {
+        status.textContent =
+          "Não foi possível abrir o anúncio. Você pode continuar usando o aplicativo normalmente.";
+      } finally {
+        button.disabled = false;
+      }
     });
 
     newQuestion();
   </script>
 </body>
 </html>
+
 
