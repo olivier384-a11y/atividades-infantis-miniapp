@@ -8,277 +8,332 @@
 
   <title>Atividades Infantis | Cone Publicações</title>
 
-  <!-- Monetag SDK -->
-  <script
-    src="https://libtl.com/sdk.js"
-    data-zone="12056591"
-    data-sdk="show_12056591">
-  </script>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f4f5ff;
-      color: #25264b;
+      background: #f5f5ff;
+      color: #29294a;
     }
 
     header {
       background: #5b55d9;
       color: white;
-      text-align: center;
-      padding: 26px 16px;
-      border-radius: 0 0 24px 24px;
+      padding: 24px 18px 28px;
+      border-radius: 0 0 25px 25px;
     }
 
-    header h1 {
-      margin: 0 0 8px;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    .brand-icon {
+      width: 48px;
+      height: 48px;
+      background: #ffffff25;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 27px;
     }
 
-    header p {
+    .brand h1 {
+      font-size: 21px;
+      margin: 0 0 5px;
+    }
+
+    .brand p {
+      font-size: 13px;
       margin: 0;
+      color: #eeeeff;
+    }
+
+    header h2 {
+      font-size: 25px;
+      line-height: 1.25;
+      margin: 0 0 10px;
+    }
+
+    header .intro {
       font-size: 14px;
+      line-height: 1.6;
+      margin: 0;
+      color: #f0efff;
     }
 
     main {
-      width: min(100% - 28px, 600px);
-      margin: 22px auto;
+      width: min(100% - 28px, 620px);
+      margin: 23px auto;
     }
 
-    .card {
-      background: white;
-      padding: 22px;
-      border-radius: 20px;
-      margin-bottom: 18px;
-      box-shadow: 0 4px 14px #25264b10;
+    .section-title {
+      font-size: 20px;
+      margin: 0 0 14px;
     }
 
-    h2 {
-      margin-top: 0;
-      font-size: 21px;
-    }
-
-    .choices {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 8px;
-      margin: 20px 0;
-    }
-
-    button {
-      font: inherit;
-      cursor: pointer;
-      border: 0;
-      border-radius: 12px;
-      padding: 13px 8px;
-    }
-
-    .letter {
-      background: #ecebff;
-      color: #4941bb;
-      font-size: 25px;
-      font-weight: bold;
-    }
-
-    .letter:disabled {
-      cursor: default;
-    }
-
-    .action {
-      display: block;
-      width: 100%;
-      background: #5b55d9;
-      color: white;
-      font-weight: bold;
-      margin-top: 12px;
-    }
-
-    .secondary {
-      background: #ecebff;
-      color: #4941bb;
-    }
-
-    #feedback {
-      min-height: 24px;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    .small {
-      color: #646581;
+    .section-description {
+      color: #696984;
       font-size: 14px;
       line-height: 1.5;
+      margin: -5px 0 17px;
+    }
+
+    .featured {
+      background: white;
+      border-radius: 18px;
+      padding: 19px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 15px #25264b0b;
+    }
+
+    .featured-icon {
+      font-size: 35px;
+      margin-bottom: 8px;
+    }
+
+    .featured h3 {
+      margin: 0 0 8px;
+      font-size: 19px;
+    }
+
+    .featured p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #696984;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .category {
+      background: white;
+      border: 1px solid #e8e7f5;
+      border-radius: 17px;
+      padding: 16px 13px;
+      text-align: left;
+      color: #29294a;
+      min-height: 145px;
+      box-shadow: 0 3px 12px #25264b08;
+    }
+
+    .category:active {
+      transform: scale(0.98);
+    }
+
+    .category-icon {
+      font-size: 30px;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .category strong {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 7px;
+    }
+
+    .category span:last-child {
+      color: #696984;
+      font-size: 12px;
+      line-height: 1.4;
+      display: block;
+    }
+
+    .site-card {
+      background: white;
+      border-radius: 18px;
+      padding: 20px;
+      margin-top: 24px;
+      text-align: center;
+      box-shadow: 0 4px 15px #25264b0b;
+    }
+
+    .site-card h3 {
+      margin: 0 0 9px;
+      font-size: 19px;
+    }
+
+    .site-card p {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #696984;
+      margin: 0 0 16px;
+    }
+
+    .main-button {
+      width: 100%;
+      padding: 15px 12px;
+      background: #5b55d9;
+      color: white;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 15px;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .category, .main-button {
+      font-family: inherit;
     }
 
     footer {
       text-align: center;
-      color: #646581;
+      color: #77778f;
       font-size: 12px;
-      padding: 10px 18px 25px;
+      line-height: 1.6;
+      padding: 10px 18px 28px;
+    }
+
+    @media (max-width: 350px) {
+      .categories {
+        grid-template-columns: 1fr;
+      }
+
+      header h2 {
+        font-size: 22px;
+      }
     }
   </style>
 </head>
 
 <body>
   <header>
-    <h1>🎨 Atividades Infantis</h1>
-    <p>Aprender brincando • Cone Publicações</p>
+    <div class="brand">
+      <div class="brand-icon">📚</div>
+      <div>
+        <h1>Atividades Infantis</h1>
+        <p>Cone Publicações</p>
+      </div>
+    </div>
+
+    <h2>Materiais para ensinar e aprender!</h2>
+    <p class="intro">
+      Encontre atividades educativas para imprimir e utilizar
+      em casa ou na sala de aula.
+    </p>
   </header>
 
   <main>
-    <section class="card">
-      <h2>🌟 Jogo das Vogais</h2>
-      <p>Leia a pergunta e toque na vogal correta.</p>
-      <p id="question" aria-live="polite"></p>
+    <section class="featured">
+      <div class="featured-icon">🏷️</div>
+      <h3>Etiquetas escolares</h3>
+      <p>
+        Encontre etiquetas para identificar cadernos, livros
+        e outros materiais escolares.
+      </p>
+      <button class="main-button" data-destination="labels">
+        Ver etiquetas escolares →
+      </button>
+    </section>
 
-      <div class="choices">
-        <button class="letter" data-letter="A">A</button>
-        <button class="letter" data-letter="E">E</button>
-        <button class="letter" data-letter="I">I</button>
-        <button class="letter" data-letter="O">O</button>
-        <button class="letter" data-letter="U">U</button>
+    <section>
+      <h2 class="section-title">Explore os materiais</h2>
+      <p class="section-description">
+        Escolha uma categoria para encontrar publicações
+        relacionadas no nosso site.
+      </p>
+
+      <div class="categories">
+        <button class="category" data-destination="literacy">
+          <span class="category-icon">🔤</span>
+          <strong>Alfabetização</strong>
+          <span>Letras, vogais, sílabas e leitura.</span>
+        </button>
+
+        <button class="category" data-destination="math">
+          <span class="category-icon">🔢</span>
+          <strong>Matemática</strong>
+          <span>Números, contagem e formas.</span>
+        </button>
+
+        <button class="category" data-destination="games">
+          <span class="category-icon">🧩</span>
+          <strong>Jogos pedagógicos</strong>
+          <span>Jogos e desafios educativos.</span>
+        </button>
+
+        <button class="category" data-destination="materials">
+          <span class="category-icon">📄</span>
+          <strong>Outros materiais</strong>
+          <span>Atividades e recursos para imprimir.</span>
+        </button>
       </div>
-
-      <p id="feedback" aria-live="polite">Vamos começar! 💛</p>
-
-      <button class="action" id="next">Nova pergunta</button>
-
-      <p class="small">
-        Acertos: <strong id="score">0</strong>
-      </p>
     </section>
 
-    <section class="card">
-      <h2>📚 Etiquetas e atividades</h2>
-      <p class="small">
-        Visite nosso site para encontrar etiquetas escolares
-        para baixar, atividades de alfabetização, matemática,
-        jogos e outros materiais educativos gratuitos.
+    <section class="site-card">
+      <h3>📥 Acesse nossos materiais</h3>
+      <p>
+        Visite o Atividades Infantis para consultar as
+        publicações e baixar os arquivos disponíveis.
       </p>
-
-      <button class="action" id="site">
-        📥 Conhecer nosso site
+      <button class="main-button" data-destination="home">
+        Acessar o site completo
       </button>
-    </section>
-
-    <section class="card">
-      <h2>💜 Apoie nosso projeto</h2>
-      <p class="small">
-        Se desejar, você pode tentar abrir um anúncio para
-        apoiar o projeto. Esta opção é voluntária.
-      </p>
-
-      <button class="action secondary" id="adButton">
-        Ver anúncio opcional
-      </button>
-
-      <p class="small" id="adStatus" aria-live="polite"></p>
     </section>
   </main>
 
   <footer>
-    Atividades Infantis • Criado por Cone Publicações
+    Atividades Infantis<br>
+    Criado por Cone Publicações
   </footer>
 
   <script>
-    // Jogo das vogais
-    const vowels = ["A", "E", "I", "O", "U"];
-    let answer = "";
-    let score = 0;
-    let answered = false;
+    const site = "https://atividadesinfantis9.blogspot.com/";
 
-    function newQuestion() {
-      answer = vowels[Math.floor(Math.random() * vowels.length)];
-      answered = false;
+    const destinations = {
+      home: site,
+      labels: site + "search?q=" + encodeURIComponent("etiquetas escolares"),
+      literacy: site + "search?q=" + encodeURIComponent("alfabetização"),
+      math: site + "search?q=" + encodeURIComponent("matemática"),
+      games: site + "search?q=" + encodeURIComponent("jogos"),
+      materials: site + "search?q=" + encodeURIComponent("atividades")
+    };
 
-      document.getElementById("question").textContent =
-        "Encontre a vogal " + answer + ".";
-
-      document.getElementById("feedback").textContent =
-        "Toque em uma das letras!";
-
-      document.querySelectorAll(".letter").forEach(button => {
-        button.disabled = false;
-        button.style.opacity = "1";
-      });
-    }
-
-    document.querySelectorAll(".letter").forEach(button => {
-      button.addEventListener("click", () => {
-        if (answered) return;
-        answered = true;
-
-        if (button.dataset.letter === answer) {
-          score++;
-          document.getElementById("score").textContent = score;
-          document.getElementById("feedback").textContent =
-            "Muito bem! Você acertou! 🎉";
+    function openDestination(url) {
+      try {
+        if (
+          window.Telegram &&
+          window.Telegram.WebApp &&
+          typeof window.Telegram.WebApp.openLink === "function"
+        ) {
+          window.Telegram.WebApp.openLink(url);
         } else {
-          document.getElementById("feedback").textContent =
-            "A vogal correta era " + answer +
-            ". Vamos tentar outra!";
+          window.location.href = url;
         }
-
-        document.querySelectorAll(".letter").forEach(item => {
-          item.disabled = true;
-          item.style.opacity =
-            item.dataset.letter === answer ? "1" : "0.6";
-        });
-      });
-    });
-
-    document.getElementById("next").addEventListener(
-      "click",
-      newQuestion
-    );
-
-    // Botão para abrir o site
-    document.getElementById("site").addEventListener("click", function () {
-      const url = "https://atividadesinfantis9.blogspot.com/";
-
-      if (
-        window.Telegram &&
-        window.Telegram.WebApp &&
-        typeof window.Telegram.WebApp.openLink === "function"
-      ) {
-        window.Telegram.WebApp.openLink(url);
-      } else {
+      } catch (error) {
         window.location.href = url;
       }
+    }
+
+    document.querySelectorAll("[data-destination]").forEach(button => {
+      button.addEventListener("click", () => {
+        const destination = button.dataset.destination;
+        const url = destinations[destination];
+
+        if (url) {
+          openDestination(url);
+        }
+      });
     });
 
-    // Anúncio opcional
-    document.getElementById("adButton").addEventListener(
-      "click",
-      async function () {
-        const status = document.getElementById("adStatus");
-        const button = document.getElementById("adButton");
-
-        if (typeof window.show_12056591 !== "function") {
-          status.textContent =
-            "Anúncio indisponível no momento. Você pode continuar usando o aplicativo.";
-          return;
-        }
-
-        button.disabled = true;
-        status.textContent = "Tentando carregar o anúncio...";
-
-        try {
-          await window.show_12056591("pop");
-          status.textContent = "Obrigado por apoiar nosso projeto!";
-        } catch (error) {
-          status.textContent =
-            "Não foi possível abrir o anúncio. Tente novamente mais tarde.";
-        } finally {
-          button.disabled = false;
-        }
-      }
-    );
-
-    newQuestion();
+    if (window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.ready();
+      window.Telegram.WebApp.expand();
+    }
   </script>
 </body>
 </html>
