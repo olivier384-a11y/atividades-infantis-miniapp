@@ -5,11 +5,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#5b55d9">
+
   <title>Atividades Infantis | Cone Publicações</title>
+
+  <!-- Telegram Mini App -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
+  <!-- Monetag SDK -->
+  <script
+    src="https://libtl.com/sdk.js"
+    data-zone="12056591"
+    data-sdk="show_12056591">
+  </script>
+
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -43,8 +55,16 @@
       font-size: 27px;
     }
 
-    .brand h1 { font-size: 21px; margin: 0 0 5px; }
-    .brand p { font-size: 13px; margin: 0; color: #eeeeff; }
+    .brand h1 {
+      font-size: 21px;
+      margin: 0 0 5px;
+    }
+
+    .brand p {
+      font-size: 13px;
+      margin: 0;
+      color: #eeeeff;
+    }
 
     header h2 {
       font-size: 25px;
@@ -64,7 +84,10 @@
       margin: 23px auto;
     }
 
-    .section-title { font-size: 20px; margin: 0 0 14px; }
+    .section-title {
+      font-size: 20px;
+      margin: 0 0 14px;
+    }
 
     .section-description {
       color: #696984;
@@ -73,7 +96,8 @@
       margin: -5px 0 17px;
     }
 
-    .featured, .site-card {
+    .featured,
+    .site-card {
       background: white;
       border-radius: 18px;
       padding: 19px;
@@ -81,10 +105,19 @@
       box-shadow: 0 4px 15px #25264b0b;
     }
 
-    .featured-icon { font-size: 35px; margin-bottom: 8px; }
-    .featured h3, .site-card h3 { margin: 0 0 8px; font-size: 19px; }
+    .featured-icon {
+      font-size: 35px;
+      margin-bottom: 8px;
+    }
 
-    .featured p, .site-card p {
+    .featured h3,
+    .site-card h3 {
+      margin: 0 0 8px;
+      font-size: 19px;
+    }
+
+    .featured p,
+    .site-card p {
       margin: 0 0 16px;
       font-size: 14px;
       line-height: 1.5;
@@ -110,7 +143,9 @@
       cursor: pointer;
     }
 
-    .category:active { transform: scale(0.98); }
+    .category:active {
+      transform: scale(0.98);
+    }
 
     .category-icon {
       font-size: 30px;
@@ -131,7 +166,10 @@
       display: block;
     }
 
-    .site-card { text-align: center; margin-top: 24px; }
+    .site-card {
+      text-align: center;
+      margin-top: 24px;
+    }
 
     .main-button {
       width: 100%;
@@ -155,8 +193,13 @@
     }
 
     @media (max-width: 350px) {
-      .categories { grid-template-columns: 1fr; }
-      header h2 { font-size: 22px; }
+      .categories {
+        grid-template-columns: 1fr;
+      }
+
+      header h2 {
+        font-size: 22px;
+      }
     }
   </style>
 </head>
@@ -207,7 +250,7 @@
         <button class="category" data-destination="diary">
           <span class="category-icon">🍎</span>
           <strong>Diário Alimentar</strong>
-          <span>Materiais para registro e acompanhamento alimentar.</span>
+          <span>Materiais para registro e organização alimentar.</span>
         </button>
 
         <button class="category" data-destination="varied">
@@ -242,11 +285,19 @@
   </footer>
 
   <script>
+    // Links das categorias
     const destinations = {
-      home: "https://atividadesinfantis9.blogspot.com/",
-      literacy: "https://atividadesinfantis9.blogspot.com/search/label/Alfabetiza%C3%A7%C3%A3o",
-      diary: "https://atividadesinfantis9.blogspot.com/search/label/Di%C3%A1rio%20alimentar",
-      varied: "https://atividadesinfantis9.blogspot.com/search/label/Atividades%20variadas"
+      home:
+        "https://atividadesinfantis9.blogspot.com/",
+
+      literacy:
+        "https://atividadesinfantis9.blogspot.com/search/label/Alfabetiza%C3%A7%C3%A3o",
+
+      diary:
+        "https://atividadesinfantis9.blogspot.com/search/label/Di%C3%A1rio%20alimentar",
+
+      varied:
+        "https://atividadesinfantis9.blogspot.com/search/label/Atividades%20variadas"
     };
 
     function openDestination(url) {
@@ -264,13 +315,45 @@
     document.querySelectorAll("[data-destination]").forEach(button => {
       button.addEventListener("click", () => {
         const url = destinations[button.dataset.destination];
-        if (url) openDestination(url);
+
+        if (url) {
+          openDestination(url);
+        }
       });
     });
 
+    // Inicializa o Telegram Mini App
     if (window.Telegram && window.Telegram.WebApp) {
       window.Telegram.WebApp.ready();
       window.Telegram.WebApp.expand();
+    }
+
+    // Monetag: In-App Interstitial
+    // Um anúncio por janela de uma hora, com atraso de 45 segundos.
+    // A chamada só é feita se o SDK estiver disponível.
+    if (typeof window.show_12056591 === "function") {
+      try {
+        const adResult = window.show_12056591({
+          type: "inApp",
+          inAppSettings: {
+            frequency: 1,
+            capping: 1,
+            interval: 60,
+            timeout: 45,
+            everyPage: false
+          }
+        });
+
+        if (adResult && typeof adResult.catch === "function") {
+          adResult.catch(function (error) {
+            console.log("Monetag: anúncio indisponível.", error);
+          });
+        }
+      } catch (error) {
+        console.log("Monetag: não foi possível iniciar o anúncio.", error);
+      }
+    } else {
+      console.log("Monetag: SDK ainda não está disponível.");
     }
   </script>
 </body>
